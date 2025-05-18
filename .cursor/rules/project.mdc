@@ -1,0 +1,122 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Cursor Rules for alaska(阿拉斯佳) Project
+
+## Environment
+- Node.js: 22.4.0
+- npm: 10.9.2
+
+## Project Type
+- Electron application with React and TypeScript
+- Uses Tailwind CSS for styling
+- SQLite for local data persistence
+
+## Project Architecture
+```
+├── forge.config.ts
+├── logs
+│   └── 2025-05-16
+├── package-lock.json
+├── package.json
+├── postcss.config.js
+├── src
+│   ├── assets
+│   ├── main
+│   ├── preload
+│   ├── renderer
+│   ├── shared
+│   └── types
+├── tailwind.config.js
+├── tsconfig.json
+├── webpack.main.config.ts
+├── webpack.plugins.ts
+├── webpack.renderer.config.ts
+└── webpack.rules.ts
+
+```
+
+## Database Architecture
+
+### Database Technology
+- SQLite: For local data persistence
+- sqlite3: Node.js library for SQLite interaction
+- typeOrm: SQL query builder for migrations and advanced queries
+
+### Data Models
+- Task: Represents processing tasks with URLs to be processed
+- Device: External devices used for data processing
+- Url: URLs to be processed with their statuses (unprocessed, processed, failed)
+- Log: System logs for operations and errors
+- ProcessingHistory: Records of URL processing attempts by devices
+
+
+### Data Access Pattern
+- Repository Pattern: Use dedicated repositories for data access
+- Each repository handles CRUD operations for its respective entity
+- Repositories are injected into modules that require data access
+- All database operations are performed in the main process
+
+## Module Structure
+- Main Process Modules: `src/main/modules/` (mirroring frontend features)
+- Database Layer: `src/main/database/` (models, migrations, repositories)
+- IPC Bridges: `src/main/ipc/` (one file per feature)
+- Frontend Pages: `src/renderer/pages/` (one folder per feature)
+- Frontend Services: `src/renderer/services/` (matching backend services)
+
+## Feature-Based Organization
+- Each UI feature has a corresponding backend module
+- Each feature has a dedicated IPC bridge
+- Each feature has corresponding data models and repositories
+- Developers can focus on specific features by working with matched folders:
+  - Frontend UI: `renderer/pages/FeatureName/`
+  - Backend logic: `main/modules/featureName/`
+  - Data access: `main/database/repositories/FeatureNameRepository.ts`
+  - IPC bridge: `main/ipc/featureName.ipc.ts`
+  - Frontend service: `renderer/services/featureName.ts`
+
+## Database Development Practices
+- Use migrations for schema changes
+- Write data models with TypeScript interfaces
+- Use repositories for data access abstraction
+- Handle database errors and provide fallbacks
+- Close connections properly when the app exits
+- Use transactions for operations that modify multiple tables
+- Keep database operations asynchronous to avoid blocking the main thread
+- Update task statistics when URL levels are determined
+
+## File Naming Conventions
+- Use explicit file names (e.g., `Dashboard.tsx` instead of `index.tsx`)
+- Name files after their purpose and functionality
+- Group related components within page folders
+- Database models use PascalCase singular names (e.g., `Task.ts`)
+- Repositories use PascalCase with "Repository" suffix (e.g., `TaskRepository.ts`)
+
+## Component Patterns
+- React functional components with TypeScript
+- Place components in their related page folders
+- Use i18n translations for all user-facing text
+- Use loading states for database operations
+
+## Data Flow
+- Frontend → Service → IPC → Module → Repository → Database
+- Database → Repository → Module → IPC → Service → Frontend
+
+## Code Style
+- Prefer arrow functions for components
+- Use TypeScript interfaces for props, state, and data models
+- Follow destructuring pattern for props
+- Organize imports with libraries first, then local imports
+
+## Internationalization (i18n)
+- All text must be internationalized
+- Use translation keys following feature.section.element pattern
+- Support both English and Chinese languages
+
