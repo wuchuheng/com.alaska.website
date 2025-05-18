@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import logo from '../../public/logo.png';
 import { useLanguage } from '../config/LanguageContext';
 import { useTheme } from '../config/ThemeContext';
 import { LanguageIcon, MoonIcon, SunIcon } from './Icons';
@@ -47,7 +46,7 @@ export const Header = () => {
         <div className="flex justify-between items-center">
           {/* Logo */}
           <div className="flex items-center">
-            <img src={logo} alt="Alaska" className="h-10 w-10 mr-2" />
+            <img src="/logo.png" alt="Alaska" className="h-10 w-10 mr-2" />
             <span className="text-2xl font-bold text-primary-500 dark:text-primary-400">
               {t('hero.title')}
             </span>

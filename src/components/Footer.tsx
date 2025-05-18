@@ -1,4 +1,3 @@
-import logo from '../../public/logo.png';
 import { useLanguage } from '../config/LanguageContext';
 
 export const Footer = () => {
@@ -10,7 +9,7 @@ export const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="flex items-center mb-6 md:mb-0">
-            <img src={logo} alt="Alaska" className="h-8 w-8 mr-2" />
+            <img src="/logo.png" alt="Alaska" className="h-8 w-8 mr-2" />
             <span className="text-xl font-bold text-primary-500">{t('hero.title')}</span>
           </div>
 
