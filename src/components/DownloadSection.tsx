@@ -1,4 +1,5 @@
 import { useLanguage } from '../config/LanguageContext';
+import { downloadUrl } from './HeroSection';
 import { DownloadIcon } from './Icons';
 
 export const DownloadSection = () => {
@@ -27,7 +28,7 @@ export const DownloadSection = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-md">
               <a
-                href="#"
+                href={downloadUrl}
                 className="flex items-center justify-center px-6 py-3 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors shadow-lg"
               >
                 <svg
@@ -61,7 +62,7 @@ export const DownloadSection = () => {
                     clipRule="evenodd"
                   />
                 </svg>
-                macOS
+                macOS (Unsupported)
               </a>
             </div>
           </div>

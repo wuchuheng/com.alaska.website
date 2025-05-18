@@ -1,6 +1,8 @@
 import { useLanguage } from '../config/LanguageContext';
 import { DownloadIcon } from './Icons';
 
+export const downloadUrl = '/阿拉斯佳-win32-x64-0.0.1.zip';
+
 export const HeroSection = () => {
   const { t } = useLanguage();
 
@@ -19,7 +21,7 @@ export const HeroSection = () => {
               {t('hero.description')}
             </p>
             <a
-              href="#download"
+              href={downloadUrl}
               className="inline-flex items-center px-6 py-3 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors shadow-lg"
             >
               <DownloadIcon className="mr-2" />
